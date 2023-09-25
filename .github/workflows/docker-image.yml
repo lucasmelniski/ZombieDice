@@ -7,7 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-
+  test:
+    run: cypress run -s cypress/Google.feature
   build:
 
     runs-on: ubuntu-latest
@@ -15,4 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build ./ --file Dockerfile --tag zombie-dice-pucpr:$(date +%s)
+      run: docker build ./ --file Dockerfile -t lucasmelniski/zombie-dice-pucpr:latest
+
+  deploy:
+    run: docker push lucasmelniski/zombie-dice-pucpr:latest
