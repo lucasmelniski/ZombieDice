@@ -8,8 +8,8 @@ on:
 
 jobs:
   test:
-    - runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
     - name: test the Docker image
       run: cypress run -s cypress/Google.feature
