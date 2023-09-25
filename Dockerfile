@@ -1,15 +1,10 @@
-FROM python:3
+FROM cypress/base:10
 
-WORKDIR .
+WORKDIR /app
+COPY . /app
 
-COPY . .
+RUN npm install cypress
+RUN $(npm bin)/cypress verify
 
-USER root
-
-RUN apt-get update
-
-RUN apt-get install python3 -y
-
-RUN echo "print('hello world')" > hello.py
-
-CMD python3 hello.py
+CMD npm run test:search; \
+npm run cucumber:report
