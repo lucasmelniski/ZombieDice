@@ -13,5 +13,3 @@ RUN apt-get install python3 -y
 RUN echo "print('hello world')" > hello.py
 
 CMD python3 hello.py
-
-CMD docker push lucasmelniski/zombie-dice-pucpr:latest
