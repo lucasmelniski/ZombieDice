@@ -7,19 +7,19 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: test the Docker image
-      run: cypress run -s cypress/Google.feature
-
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build ./ --file Dockerfile -t lucasmelniski/zombie-dice-pucpr:latest
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: test the Docker image
+      run: cypress run -s cypress/Google.feature
 
   deploy:
     runs-on: ubuntu-latest
